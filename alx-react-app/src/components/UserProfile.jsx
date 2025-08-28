@@ -1,12 +1,11 @@
-// src/components/UserProfile.jsx
-const UserProfile = (props) => {
+function UserProfile() {
   return (
     <div>
-      <h2>{props.name}</h2>
-      <p>Age: {props.age}</p>
-      <p>{props.bio}</p>
+      <h2>Alice</h2>
+      <p>Age: 25</p>
+      <p>Bio: Loves hiking and photography.</p>
     </div>
   );
-};
+}
 
 export default UserProfile;
