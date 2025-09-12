@@ -2,17 +2,16 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer style={{ 
-      backgroundColor: '#333', 
-      color: 'white', 
-      textAlign: 'center', 
-      padding: '10px', 
-      marginTop: '20px', 
-      fontStyle: 'italic',
-      letterSpacing: '1px',
-      fontFamily: 'Georgia, serif'
+    <footer style={{
+      backgroundColor: '#f7f7fb',
+      textAlign: 'center',
+      padding: '12px 10px',
+      marginTop: '30px',
+      borderTop: '1px solid #e5e7eb'
     }}>
-      <p>&copy; 2025 My Website. All rights reserved.</p>
+      <p style={{ margin: 0, fontSize: '0.95rem' }}>
+        © {new Date().getFullYear()} — Built with ❤️ and inline styles
+      </p>
     </footer>
   );
 };
