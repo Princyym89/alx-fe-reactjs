@@ -1,0 +1,15 @@
+cat > src/App.css <<'EOF'
+.App {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #222;
+}
+
+input, textarea, button {
+  font-family: inherit;
+}
+
+button {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+EOF
