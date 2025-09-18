@@ -1,3 +1,4 @@
+import FavoriteButton from './FavoriteButton';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useRecipeStore from './recipeStore';
@@ -141,12 +142,29 @@ const RecipeList = () => {
               onMouseOut={(e) => e.target.style.backgroundColor = '#007bff'}
             >
               View Details →
-            </Link>
-          </div>
-        ))
-      )}
-    </div>
-  );
-};
-
-export default RecipeList;
+<div style={{ 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center',
+              marginTop: '15px'
+            }}>
+              <Link 
+                to={`/recipe/${recipe.id}`}
+                style={{
+                  display: 'inline-block',
+                  padding: '10px 20px',
+                  backgroundColor: '#007bff',
+                  color: 'white',
+                  textDecoration: 'none',
+                  borderRadius: '6px',
+                  fontSize: '14px',
+                  fontWeight: 'bold',
+                  transition: 'background-color 0.3s ease'
+                }}
+                onMouseOver={(e) => e.target.style.backgroundColor = '#0056b3'}
+                onMouseOut={(e) => e.target.style.backgroundColor = '#007bff'}
+              >
+                View Details →
+              </Link>
+              <FavoriteButton recipeId={recipe.id} size="small" />
+            </div>
