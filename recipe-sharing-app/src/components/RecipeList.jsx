@@ -1,7 +1,7 @@
-import FavoriteButton from './FavoriteButton';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import useRecipeStore from './recipeStore';
+import useRecipeStore from '../store/recipeStore';
+import FavoriteButton from './FavoriteButton';
 
 const RecipeList = () => {
   const { 
@@ -125,24 +125,7 @@ const RecipeList = () => {
             }}>
               {recipe.description}
             </p>
-            <Link 
-              to={`/recipe/${recipe.id}`}
-              style={{
-                display: 'inline-block',
-                padding: '10px 20px',
-                backgroundColor: '#007bff',
-                color: 'white',
-                textDecoration: 'none',
-                borderRadius: '6px',
-                fontSize: '14px',
-                fontWeight: 'bold',
-                transition: 'background-color 0.3s ease'
-              }}
-              onMouseOver={(e) => e.target.style.backgroundColor = '#0056b3'}
-              onMouseOut={(e) => e.target.style.backgroundColor = '#007bff'}
-            >
-              View Details →
-<div style={{ 
+            <div style={{ 
               display: 'flex', 
               justifyContent: 'space-between', 
               alignItems: 'center',
@@ -168,3 +151,12 @@ const RecipeList = () => {
               </Link>
               <FavoriteButton recipeId={recipe.id} size="small" />
             </div>
+          </div>
+        ))
+      )}
+    </div>
+  );
+};
+
+export default RecipeList;
+EOF

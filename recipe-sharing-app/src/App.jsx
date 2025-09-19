@@ -2,9 +2,11 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import RecipeDetails from './components/RecipeDetails';
 import FavoritesPage from './components/FavoritesPage';
+import SearchBar from './components/SearchBar';
+import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
 import SampleDataLoader from './components/SampleDataLoader';
-import useRecipeStore from './components/recipeStore';
+import useRecipeStore from './store/recipeStore';
 import './App.css';
 
 function App() {

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useRecipeStore from './recipeStore';
+import useRecipeStore from '../store/recipeStore';
 
 const SampleDataLoader = () => {
   const { recipes, addRecipe } = useRecipeStore(state => ({
