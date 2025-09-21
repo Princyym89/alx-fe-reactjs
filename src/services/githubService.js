@@ -1,31 +1,18 @@
+// src/services/githubService.js
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_APP_GITHUB_API_URL || 'https://api.github.com';
-const API_KEY = import.meta.env.VITE_APP_GITHUB_API_KEY;
-
-// Create axios instance
-const githubAPI = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    'Accept': 'application/vnd.github.v3+json',
-    ...(API_KEY && { 'Authorization': `token ${API_KEY}` })
-  }
-});
-
-export const searchUsers = async (username) => {
+// Function to fetch user data from GitHub API
+const fetchUserData = async (username) => {
   try {
-    const response = await githubAPI.get(`/search/users?q=${username}`);
+    // Make a GET request to the GitHub API endpoint for a specific user
+    const response = await axios.get(`https://api.github.com/users/${username}`);
+    // Return the data from the response
     return response.data;
   } catch (error) {
-    throw new Error(`Error searching users: ${error.message}`);
+    // If an error occurs (e.g., user not found), throw it to be handled by the component
+    throw error;
   }
 };
 
-export const getUserDetails = async (username) => {
-  try {
-    const response = await githubAPI.get(`/users/${username}`);
-    return response.data;
-  } catch (error) {
-    throw new Error(`Error fetching user details: ${error.message}`);
-  }
-};
+// Export the function so it can be imported in components
+export { fetchUserData };
