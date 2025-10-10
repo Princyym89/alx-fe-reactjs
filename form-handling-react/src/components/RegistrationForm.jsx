@@ -1,34 +1,35 @@
 import { useState } from 'react';
 
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: ''
-  });
-
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    
+    if (name === 'username') {
+      setUsername(value);
+    } else if (name === 'email') {
+      setEmail(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
   };
 
   const validate = () => {
     const newErrors = {};
     
-    if (!formData.username) {
+    if (!username) {
       newErrors.username = 'Username is required';
     }
     
-    if (!formData.email) {
+    if (!email) {
       newErrors.email = 'Email is required';
     }
     
-    if (!formData.password) {
+    if (!password) {
       newErrors.password = 'Password is required';
     }
     
@@ -46,15 +47,13 @@ const RegistrationForm = () => {
     }
     
     setErrors({});
-    console.log('Form submitted:', formData);
+    console.log('Form submitted:', { username, email, password });
     alert('User registered successfully!');
     
     // Reset form
-    setFormData({
-      username: '',
-      email: '',
-      password: ''
-    });
+    setUsername('');
+    setEmail('');
+    setPassword('');
   };
 
   return (
@@ -69,7 +68,7 @@ const RegistrationForm = () => {
             type="text"
             id="username"
             name="username"
-            value={formData.username}
+            value={username}
             onChange={handleChange}
             style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
           />
@@ -86,7 +85,7 @@ const RegistrationForm = () => {
             type="email"
             id="email"
             name="email"
-            value={formData.email}
+            value={email}
             onChange={handleChange}
             style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
           />
@@ -103,7 +102,7 @@ const RegistrationForm = () => {
             type="password"
             id="password"
             name="password"
-            value={formData.password}
+            value={password}
             onChange={handleChange}
             style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
           />
