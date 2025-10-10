@@ -1,6 +1,18 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+const validationSchema = Yup.object({
+  username: Yup.string()
+    .required('Username is required')
+    .min(3, 'Username must be at least 3 characters'),
+  email: Yup.string()
+    .email('Invalid email address')
+    .required('Email is required'),
+  password: Yup.string()
+    .required('Password is required')
+    .min(6, 'Password must be at least 6 characters')
+});
+
 const FormikForm = () => {
   const initialValues = {
     username: '',
@@ -8,23 +20,14 @@ const FormikForm = () => {
     password: ''
   };
 
-  const validationSchema = Yup.object({
-    username: Yup.string().required('Username is required'),
-    email: Yup.string()
-      .email('Invalid email format')
-      .required('Email is required'),
-    password: Yup.string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('Password is required')
-  });
-
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    console.log('Form submitted with Formik:', values);
-    // Here you would typically make an API call
+    console.log('Form submitted:', values);
     alert('User registered successfully with Formik!');
     
-    setSubmitting(false);
-    resetForm();
+    setTimeout(() => {
+      setSubmitting(false);
+      resetForm();
+    }, 1000);
   };
 
   return (
@@ -49,8 +52,8 @@ const FormikForm = () => {
               />
               <ErrorMessage
                 name="username"
-                component="p"
-                style={{ color: 'red', fontSize: '14px', margin: '5px 0 0 0' }}
+                component="span"
+                style={{ color: 'red', fontSize: '14px', display: 'block' }}
               />
             </div>
 
@@ -66,8 +69,8 @@ const FormikForm = () => {
               />
               <ErrorMessage
                 name="email"
-                component="p"
-                style={{ color: 'red', fontSize: '14px', margin: '5px 0 0 0' }}
+                component="span"
+                style={{ color: 'red', fontSize: '14px', display: 'block' }}
               />
             </div>
 
@@ -83,8 +86,8 @@ const FormikForm = () => {
               />
               <ErrorMessage
                 name="password"
-                component="p"
-                style={{ color: 'red', fontSize: '14px', margin: '5px 0 0 0' }}
+                component="span"
+                style={{ color: 'red', fontSize: '14px', display: 'block' }}
               />
             </div>
 
@@ -94,14 +97,14 @@ const FormikForm = () => {
               style={{
                 width: '100%',
                 padding: '10px',
-                backgroundColor: '#28a745',
+                backgroundColor: isSubmitting ? '#ccc' : '#28a745',
                 color: 'white',
                 border: 'none',
                 borderRadius: '4px',
-                cursor: 'pointer'
+                cursor: isSubmitting ? 'not-allowed' : 'pointer'
               }}
             >
-              Register with Formik
+              {isSubmitting ? 'Submitting...' : 'Register'}
             </button>
           </Form>
         )}

@@ -40,21 +40,21 @@ const RegistrationForm = () => {
     
     const validationErrors = validate();
     
-    if (Object.keys(validationErrors).length === 0) {
-      console.log('Form submitted successfully:', formData);
-      // Here you would typically make an API call
-      alert('User registered successfully!');
-      
-      // Reset form
-      setFormData({
-        username: '',
-        email: '',
-        password: ''
-      });
-      setErrors({});
-    } else {
+    if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      return;
     }
+    
+    setErrors({});
+    console.log('Form submitted:', formData);
+    alert('User registered successfully!');
+    
+    // Reset form
+    setFormData({
+      username: '',
+      email: '',
+      password: ''
+    });
   };
 
   return (
@@ -74,9 +74,7 @@ const RegistrationForm = () => {
             style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
           />
           {errors.username && (
-            <p style={{ color: 'red', fontSize: '14px', margin: '5px 0 0 0' }}>
-              {errors.username}
-            </p>
+            <span style={{ color: 'red', fontSize: '14px' }}>{errors.username}</span>
           )}
         </div>
 
@@ -93,9 +91,7 @@ const RegistrationForm = () => {
             style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
           />
           {errors.email && (
-            <p style={{ color: 'red', fontSize: '14px', margin: '5px 0 0 0' }}>
-              {errors.email}
-            </p>
+            <span style={{ color: 'red', fontSize: '14px' }}>{errors.email}</span>
           )}
         </div>
 
@@ -112,9 +108,7 @@ const RegistrationForm = () => {
             style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
           />
           {errors.password && (
-            <p style={{ color: 'red', fontSize: '14px', margin: '5px 0 0 0' }}>
-              {errors.password}
-            </p>
+            <span style={{ color: 'red', fontSize: '14px' }}>{errors.password}</span>
           )}
         </div>
 
