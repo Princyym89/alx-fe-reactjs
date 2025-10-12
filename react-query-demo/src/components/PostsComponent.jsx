@@ -19,6 +19,8 @@ function PostsComponent() {
   } = useQuery("posts", fetchPosts, {
     refetchOnWindowFocus: true,
     keepPreviousData: true,
+    cacheTime: 1000 * 60 * 5, // cache data for 5 minutes
+    staleTime: 1000 * 30, // data stays fresh for 30 seconds
   });
 
   if (isLoading) {
