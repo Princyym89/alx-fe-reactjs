@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import AddTodoForm from './AddTodoForm';
 
 const TodoList = () => {
   const [todos, setTodos] = useState([
@@ -33,7 +34,7 @@ const TodoList = () => {
   return (
     <div data-testid="todo-list">
       <h1>Todo List</h1>
-      <AddTodoForm addTodo={addTodo} />
+      <AddTodoForm onAdd={addTodo} />
       <ul data-testid="todo-items">
         {todos.map((todo) => (
           <li
@@ -59,31 +60,6 @@ const TodoList = () => {
         ))}
       </ul>
     </div>
-  );
-};
-
-const AddTodoForm = ({ addTodo }) => {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addTodo(inputValue);
-    setInputValue('');
-  };
-
-  return (
-    <form onSubmit={handleSubmit} data-testid="add-todo-form">
-      <input
-        type="text"
-        data-testid="todo-input"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Add a new todo"
-      />
-      <button type="submit" data-testid="add-button">
-        Add Todo
-      </button>
-    </form>
   );
 };
 

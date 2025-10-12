@@ -1,36 +1,53 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import TodoList from '../components/TodoList';
+import AddTodoForm from '../components/AddTodoForm';
 
 describe('AddTodoForm', () => {
   test('renders add todo form', () => {
-    render(<TodoList />);
+    const mockOnAdd = jest.fn();
+    render(<AddTodoForm onAdd={mockOnAdd} />);
     expect(screen.getByPlaceholderText(/Add a new todo/i)).toBeInTheDocument();
   });
 
   test('renders input field', () => {
-    render(<TodoList />);
+    const mockOnAdd = jest.fn();
+    render(<AddTodoForm onAdd={mockOnAdd} />);
     const input = screen.getByTestId('todo-input');
     expect(input).toBeInTheDocument();
   });
 
   test('renders add button', () => {
-    render(<TodoList />);
+    const mockOnAdd = jest.fn();
+    render(<AddTodoForm onAdd={mockOnAdd} />);
     const button = screen.getByTestId('add-button');
     expect(button).toBeInTheDocument();
   });
 
   test('allows user to type in input', () => {
-    render(<TodoList />);
+    const mockOnAdd = jest.fn();
+    render(<AddTodoForm onAdd={mockOnAdd} />);
     const input = screen.getByTestId('todo-input');
     
     fireEvent.change(input, { target: { value: 'New task' } });
     expect(input.value).toBe('New task');
   });
 
+  test('calls onAdd when form is submitted', () => {
+    const mockOnAdd = jest.fn();
+    render(<AddTodoForm onAdd={mockOnAdd} />);
+    const input = screen.getByTestId('todo-input');
+    const button = screen.getByTestId('add-button');
+    
+    fireEvent.change(input, { target: { value: 'New task' } });
+    fireEvent.click(button);
+    
+    expect(mockOnAdd).toHaveBeenCalledWith('New task');
+  });
+
   test('clears input after adding todo', () => {
-    render(<TodoList />);
+    const mockOnAdd = jest.fn();
+    render(<AddTodoForm onAdd={mockOnAdd} />);
     const input = screen.getByTestId('todo-input');
     const button = screen.getByTestId('add-button');
     
