@@ -31,13 +31,14 @@ const TodoList = () => {
   };
 
   return (
-    <div>
+    <div data-testid="todo-list">
       <h1>Todo List</h1>
       <AddTodoForm addTodo={addTodo} />
-      <ul>
+      <ul data-testid="todo-items">
         {todos.map((todo) => (
           <li
             key={todo.id}
+            data-testid={`todo-item-${todo.id}`}
             onClick={() => toggleTodo(todo.id)}
             style={{
               textDecoration: todo.completed ? 'line-through' : 'none',
@@ -46,6 +47,7 @@ const TodoList = () => {
           >
             {todo.text}
             <button
+              data-testid={`delete-button-${todo.id}`}
               onClick={(e) => {
                 e.stopPropagation();
                 deleteTodo(todo.id);
@@ -70,16 +72,19 @@ const AddTodoForm = ({ addTodo }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} data-testid="add-todo-form">
       <input
         type="text"
+        data-testid="todo-input"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Add a new todo"
       />
-      <button type="submit">Add Todo</button>
+      <button type="submit" data-testid="add-button">
+        Add Todo
+      </button>
     </form>
   );
 };
 
-export default TodoList;;
+export default TodoList;
