@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import Search from "./components/Search";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+    <div className="min-h-screen bg-gray-100 p-6">
+      {/* Header */}
+      <header className="text-center mb-8">
+        <h1 className="text-4xl font-bold text-gray-800">
+          GitHub User Search
+        </h1>
+        <p className="text-gray-600 mt-2">
+          Search for GitHub users and view their profiles
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      </header>
+
+      {/* Search Component */}
+      <main className="max-w-3xl mx-auto">
+        <Search />
+      </main>
+
+      {/* Footer */}
+      <footer className="text-center mt-12 text-gray-500 text-sm">
+        © 2025 GitHub User Search App
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;
+
